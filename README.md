@@ -22,7 +22,17 @@ The notebook evaluates the state with Qiskit's statevector formalism before any 
 
 ## Scientific Basis
 
-A general pure state of one qubit can be written as $|\psi\rangle=\alpha|0\rangle+\beta|1\rangle$, where the amplitudes satisfy $|\alpha|^2+|\beta|^2=1$.
+A general pure state of one qubit can be written as 
+
+$$
+|\psi\rangle=\alpha|0\rangle+\beta|1\rangle,
+$$ 
+
+where the amplitudes satisfy 
+
+$$
+|\alpha|^2+|\beta|^2=1.
+$$
 
 When the qubit is measured in the computational basis, the Born rule gives $P(0)=|\alpha|^2$ and $P(1)=|\beta|^2$.
 
