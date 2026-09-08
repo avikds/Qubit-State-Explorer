@@ -2,17 +2,7 @@
 
 ## Overview
 
-`Qubit_State_Explorer.ipynb` implements a single-qubit state exploration program in Qiskit. The qubit is initialized in the computational basis state
-
-$$
-|0\rangle =
-\begin{bmatrix}
-1\\
-0
-\end{bmatrix},
-$$
-
-and the user selects one gate from the following set:
+`Qubit_State_Explorer.ipynb` implements a single-qubit state exploration program in Qiskit. The qubit is initialized in the computational basis state $|0\rangle$, and the user selects one gate from the following set:
 
 - Pauli-X (`X`)
 - Pauli-Y (`Y`)
@@ -32,100 +22,84 @@ The notebook evaluates the state with Qiskit's statevector formalism before any 
 
 ## Scientific Basis
 
-A general pure state of one qubit can be written as
+A general pure state of one qubit can be written as $|\psi\rangle=\alpha|0\rangle+\beta|1\rangle$, where the amplitudes satisfy $|\alpha|^2+|\beta|^2=1$.
+
+When the qubit is measured in the computational basis, the Born rule gives $P(0)=|\alpha|^2$ and $P(1)=|\beta|^2$.
+
+For a pure single-qubit state, the Bloch-vector representation provides an equivalent geometric description. For amplitudes $\alpha$ and $\beta$, the Cartesian components are:
 
 $$
-|\psi\rangle = \alpha |0\rangle + \beta |1\rangle,
-$$
-
-where the amplitudes satisfy
-
-$$
-|\alpha|^2 + |\beta|^2 = 1.
-$$
-
-When the qubit is measured in the computational basis, the Born rule gives
-
-$$
-P(0)=|\alpha|^2,
-\qquad
-P(1)=|\beta|^2.
-$$
-
-For a pure single-qubit state, the Bloch-vector representation provides an equivalent geometric description of the state. For amplitudes $\alpha$ and $\beta$, the Cartesian Bloch components are
-
-$$
-x = 2\operatorname{Re}(\alpha^*\beta),
+x=2\,\mathrm{Re}(\alpha^*\beta)
 $$
 
 $$
-y = 2\operatorname{Im}(\alpha^*\beta),
+y=2\,\mathrm{Im}(\alpha^*\beta)
 $$
 
 $$
-z = |\alpha|^2-|\beta|^2.
+z=|\alpha|^2-|\beta|^2
 $$
 
-The Bloch vector therefore identifies the location of the state on the unit sphere while the measurement probabilities describe the same state with respect to the computational basis.
+The Bloch vector identifies the location of the state on the unit sphere, while the measurement probabilities describe the same state with respect to the computational basis.
 
 ## Quantum Gates Used
 
 ### Pauli-X Gate
 
-The X gate is
+The Pauli-X operator is
 
 $$
 X =
-\begin{bmatrix}
-0 & 1\\
+\begin{pmatrix}
+0 & 1 \\
 1 & 0
-\end{bmatrix}.
+\end{pmatrix}
 $$
 
-Applied to the initial state $|0\rangle$,
+Applied to the initial state,
 
 $$
-X|0\rangle = |1\rangle.
+X|0\rangle=|1\rangle
 $$
 
 Thus, an X operation exchanges the computational-basis states.
 
 ### Pauli-Y Gate
 
-The Y gate is
+The Pauli-Y operator is
 
 $$
 Y =
-\begin{bmatrix}
-0 & -i\\
+\begin{pmatrix}
+0 & -i \\
 i & 0
-\end{bmatrix}.
+\end{pmatrix}
 $$
 
-Applied to $|0\rangle$,
+Applied to the initial state,
 
 $$
-Y|0\rangle = i|1\rangle.
+Y|0\rangle=i|1\rangle
 $$
 
 The factor $i$ changes the phase of the amplitude, but it does not change the probability of measuring $|1\rangle$.
 
 ### Pauli-Z Gate
 
-The Z gate is
+The Pauli-Z operator is
 
 $$
 Z =
-\begin{bmatrix}
-1 & 0\\
+\begin{pmatrix}
+1 & 0 \\
 0 & -1
-\end{bmatrix}.
+\end{pmatrix}
 $$
 
-Applied to $|0\rangle$,
+Applied to the initial state,
 
 $$
-Z|0\rangle = |0\rangle.
+Z|0\rangle=|0\rangle
 $$
 
 For the initial computational-basis state, the Z operation therefore leaves the measurement probabilities unchanged.
@@ -135,68 +109,59 @@ For the initial computational-basis state, the Z operation therefore leaves the 
 The Hadamard operator is
 
 $$
-H=
+H =
 \frac{1}{\sqrt{2}}
-\begin{bmatrix}
-1 & 1\\
+\begin{pmatrix}
+1 & 1 \\
 1 & -1
-\end{bmatrix}.
+\end{pmatrix}
 $$
 
-Its action on $|0\rangle$ is
+Its action on the initial state is
 
 $$
-H|0\rangle
-=
-\frac{|0\rangle+|1\rangle}{\sqrt{2}}.
+H|0\rangle=\frac{|0\rangle+|1\rangle}{\sqrt{2}}
 $$
 
 Consequently,
 
 $$
-P(0)=P(1)=\frac{1}{2}.
+P(0)=P(1)=\frac{1}{2}
 $$
 
 The Hadamard gate moves the initial state from the north pole of the Bloch sphere to the positive x-axis.
 
 ### RY Gate
 
-The notebook uses Qiskit's `ry(theta, 0)` operation, corresponding to the matrix
+The notebook uses Qiskit's `ry(theta, 0)` operation, corresponding to
 
 $$
-R_y(\theta)
-=
-\begin{bmatrix}
-\cos(\theta/2) & -\sin(\theta/2)\\
+R_y(\theta) =
+\begin{pmatrix}
+\cos(\theta/2) & -\sin(\theta/2) \\
 \sin(\theta/2) & \cos(\theta/2)
-\end{bmatrix}.
+\end{pmatrix}
 $$
 
-For the initial state $|0\rangle$,
+For the initial state,
 
 $$
-R_y(\theta)|0\rangle
-=
-\cos\left(\frac{\theta}{2}\right)|0\rangle
-+
-\sin\left(\frac{\theta}{2}\right)|1\rangle.
+R_y(\theta)|0\rangle=\cos(\theta/2)|0\rangle+\sin(\theta/2)|1\rangle
 $$
 
 Therefore,
 
 $$
-P(0)=\cos^2\left(\frac{\theta}{2}\right),
-\qquad
-P(1)=\sin^2\left(\frac{\theta}{2}\right).
+P(0)=\cos^2(\theta/2),\qquad P(1)=\sin^2(\theta/2)
 $$
 
-For this particular real-amplitude state, the Bloch coordinates are
+For this real-amplitude state, the Bloch coordinates are
 
 $$
-(x,y,z)=(\sin\theta,\,0,\,\cos\theta).
+(x,y,z)=(\sin\theta,0,\cos\theta)
 $$
 
-This makes the RY gate especially useful for observing continuous state rotations and the corresponding continuous change in computational-basis probabilities.
+This makes the RY gate useful for observing continuous state rotations and the corresponding continuous change in computational-basis probabilities.
 
 ## Notebook Structure
 
@@ -217,7 +182,6 @@ The notebook installs the packages required for the Qiskit workflow and visualiz
 The implementation imports:
 
 ```python
-import numpy as np
 import matplotlib.pyplot as plt
 
 from qiskit import QuantumCircuit
@@ -290,7 +254,7 @@ probs = state.probabilities()
 
 and reports
 
-```python
+```text
 P(|0⟩)
 P(|1⟩)
 ```
@@ -306,35 +270,25 @@ Choose a gate: RY
 Enter the rotation angle θ in radians: 45
 ```
 
-Thus,
+Thus, $\theta=45$ radians.
 
-$$
-\theta = 45 \text{ radians}.
-$$
-
-The resulting statevector stored in the executed notebook is
+The resulting statevector stored in the executed notebook is:
 
 ```text
 Statevector([-0.87330464+0.j, -0.48717451+0.j],
             dims=(2,))
 ```
 
-The amplitudes are therefore approximately
+The amplitudes are therefore approximately $\alpha=-0.87330464$ and $\beta=-0.48717451$.
+
+The associated computational-basis probabilities are approximately
 
 $$
-\alpha=-0.87330464,
-\qquad
-\beta=-0.48717451.
-$$
-
-The associated computational-basis probabilities are
-
-$$
-P(0)=|\alpha|^2\approx0.762661,
+P(0)=0.762661
 $$
 
 $$
-P(1)=|\beta|^2\approx0.237339.
+P(1)=0.237339
 $$
 
 The notebook displays these values rounded to four decimal places:
@@ -344,18 +298,10 @@ P(|0⟩) = 0.7627
 P(|1⟩) = 0.2373
 ```
 
-The corresponding Bloch coordinates are
+The corresponding Bloch coordinates are approximately
 
 $$
-x=\sin(45)\approx0.850904,
-$$
-
-$$
-y=0,
-$$
-
-$$
-z=\cos(45)\approx0.525322.
+x=\sin(45)=0.850904,\qquad y=0,\qquad z=\cos(45)=0.525322
 $$
 
 The signs of both state amplitudes are negative in the stored statevector. Because both amplitudes share the same overall phase, this does not change the physical quantum state or its measurement probabilities.
@@ -364,23 +310,19 @@ The signs of both state amplitudes are negative in the stored statevector. Becau
 
 ### Statevector Rather Than Sampled Counts
 
-The notebook calculates measurement probabilities directly from the statevector rather than estimating them from a finite number of simulator shots. This produces the exact probabilities of the ideal circuit state within the statevector simulator.
+The notebook calculates measurement probabilities directly from the statevector rather than estimating them from a finite number of simulator shots. This produces the exact probabilities of the ideal circuit state within the statevector formalism.
 
-For example, for the `RY` operation,
+For the `RY` operation,
 
 $$
-|\psi\rangle
-=
-\cos\left(\frac{\theta}{2}\right)|0\rangle
-+
-\sin\left(\frac{\theta}{2}\right)|1\rangle,
+|\psi\rangle=\cos(\theta/2)|0\rangle+\sin(\theta/2)|1\rangle
 $$
 
-so the computational-basis probabilities follow directly from the squared magnitudes of these amplitudes.
+so the computational-basis probabilities follow directly from the squared magnitudes of the amplitudes.
 
 ### Measurement Is Not Added to the Circuit
 
-The circuit itself contains only the selected gate. The notebook does not append `measure()` before creating the statevector. A projective measurement would collapse the state and would no longer represent the pre-measurement state required for the Bloch-sphere plot.
+The circuit itself contains only the selected gate. The notebook does not append `measure()` before creating the statevector. This keeps the state in its pre-measurement form for the Bloch-sphere representation.
 
 The probability calculation is therefore performed mathematically from the final statevector.
 
@@ -404,7 +346,7 @@ The notebook installs these packages in its first executable cell, so a separate
 
 ## Running the Notebook
 
-Open `Qubit_State_Explorer_Final_Notebook.ipynb` in Google Colab and run the cells from top to bottom.
+Open `Qubit_State_Explorer.ipynb` in Google Colab and run the cells from top to bottom.
 
 When the interactive cell executes:
 
@@ -434,7 +376,7 @@ These cases expose the basic behavior of the implemented gates and, for `RY`, il
 The principal repository artifact is:
 
 ```text
-Qubit_State_Explorer.ipynb
+Qubit_State_Explorer_Final_Notebook.ipynb
 ```
 
 This notebook contains the executable implementation, explanatory markdown, circuit visualization, Bloch-sphere output, and probability visualization.
