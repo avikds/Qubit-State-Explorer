@@ -386,7 +386,7 @@ These cases expose the basic behavior of the implemented gates and, for `RY`, il
 The principal repository artifact is:
 
 ```text
-Qubit_State_Explorer_Final_Notebook.ipynb
+Qubit_State_Explorer.ipynb
 ```
 
 This notebook contains the executable implementation, explanatory markdown, circuit visualization, Bloch-sphere output, and probability visualization.
