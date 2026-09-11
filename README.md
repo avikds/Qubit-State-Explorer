@@ -39,11 +39,11 @@ When the qubit is measured in the computational basis, the Born rule gives $P(0)
 For a pure single-qubit state, the Bloch-vector representation provides an equivalent geometric description. For amplitudes $\alpha$ and $\beta$, the Cartesian components are:
 
 $$
-x=2\,\mathrm{Re}(\alpha^*\beta)
+x=2\ \mathrm{Re}(\alpha^*\beta)
 $$
 
 $$
-y=2\,\mathrm{Im}(\alpha^*\beta)
+y=2\ \mathrm{Im}(\alpha^*\beta)
 $$
 
 $$
